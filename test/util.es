@@ -61,6 +61,12 @@ export function basicDirectiveTests(node, location, directive)
 {
     basicNodeTests(node, location);
 
+    it('#directive must not be undefined',
+    function ()
+    {
+        assert.ok(node.directive !== undefined);
+    });
+
     it('#directive must return the correct value',
     function ()
     {
