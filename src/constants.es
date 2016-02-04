@@ -102,5 +102,5 @@ export const REGEXP_LANGID = /^[a-z]{2,3}(?:[-][A-Z]{2,3})?$/;
 /**
  * @private
  */
-export const REGEXP_QNAME = /^[a-z][a-zA-Z0-9]*$/;
+export const REGEXP_QNAME = /^[a-zA-Z0-9]+$/;
 

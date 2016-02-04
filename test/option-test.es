@@ -40,6 +40,10 @@ function ()
          class:[option.Namespace, option.AbstractUnitOption]},
         {key:OPTION_NS, value:'camelCaSe',
          class:[option.Namespace, option.AbstractUnitOption]},
+        {key:OPTION_NS, value:'12345',
+         class:[option.Namespace, option.AbstractUnitOption]},
+        {key:OPTION_NS, value:'M1i2x3e4d5',
+         class:[option.Namespace, option.AbstractUnitOption]},
         {key:OPTION_PLURAL, value:undefined,
          class:[option.Plural, option.AbstractVariationOption]},
         {key:OPTION_PLURAL, value:'5',
@@ -90,7 +94,6 @@ function ()
             {key:OPTION_LANG, value:'unsupported'},
             {key:OPTION_NS},
             {key:OPTION_NS, value:'-malformed'},
-            {key:OPTION_NS, value:'Malformed'},
             {key:OPTION_PLURAL, value:'unsupported'},
             {key:OPTION_PLURAL, value:'0.5'},
             {key:'unsupported'}
