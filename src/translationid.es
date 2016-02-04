@@ -43,7 +43,7 @@ export default class TranslationId extends AbstractDirective
      * @param {string} id - the id
      * @returns {void}
      */
-    constructor(location, id, context)
+    constructor(location, id)
     {
         super(location, DIRECTIVE_TRANSLATION_ID);
 

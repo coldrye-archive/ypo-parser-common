@@ -14,7 +14,8 @@
 
 ### fix
 
-* fix(QNAME): was way to restrictive ([84050b3](https://github.com/coldrye-es/ypo-parser-common/commit/84050b3))
+* fix(translationid): remove extraneous context parameter ([ab43896](https://github.com/coldrye-es/ypo-parser-common/commit/ab43896))
+* fix(QNAME): was way to restrictive ([760ef4b](https://github.com/coldrye-es/ypo-parser-common/commit/760ef4b))
 
 
 
