@@ -42,6 +42,12 @@ export const DIRECTIVE_COMMENT = '#';
 /**
  * @private
  */
+export const DIRECTIVE_CONTEXT = '#@';
+
+
+/**
+ * @private
+ */
 export const DIRECTIVE_TRANSLATION_ID = '#!';
 
 

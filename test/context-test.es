@@ -18,36 +18,35 @@
 
 import assert from 'esaver';
 
-import {DIRECTIVE_TRANSLATION_ID} from '../src/constants';
-import TranslationId from '../src/translationid';
+import {DIRECTIVE_CONTEXT} from '../src/constants';
+import Context from '../src/context';
 
 import * as util from './util';
 import * as fixtures from './fixtures';
 
 
-describe('TranslationId',
+describe('Context',
 function ()
 {
-    const cut = new TranslationId(
-        fixtures.TEST_LOCATION, fixtures.TEST_ID
+    const cut = new Context(
+        fixtures.TEST_LOCATION, fixtures.TEST_CONTEXT
     );
 
     util.basicDirectiveTests(
-        cut, fixtures.TEST_LOCATION, DIRECTIVE_TRANSLATION_ID
+        cut, fixtures.TEST_LOCATION, DIRECTIVE_CONTEXT
     );
 
     it('#id must return correct value',
     function ()
     {
-        assert.equal(fixtures.TEST_ID, cut.id);
+        assert.equal(fixtures.TEST_CONTEXT, cut.id);
     });
-
 
     describe('.createNode()',
     function ()
     {
-        const cut2 = TranslationId.createNode(
-            fixtures.TEST_LOCATION, fixtures.TEST_ID
+        const cut2 = Context.createNode(
+            fixtures.TEST_LOCATION, fixtures.TEST_CONTEXT
         );
 
         it('must return properly configured instance',

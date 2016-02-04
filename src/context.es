@@ -16,26 +16,26 @@
  */
 
 
-import {DIRECTIVE_TRANSLATION_ID} from './constants';
+import {DIRECTIVE_CONTEXT} from './constants';
 
 import AbstractDirective from './directive';
 
 
 /**
- * The class TranslationId models a token of the lexer that represents a message id
- * location in the input file.
+ * The class Context models a token of the lexer that represents a message context
+ * directive in the input file.
  */
-export default class TranslationId extends AbstractDirective
+export default class Context extends AbstractDirective
 {
     /**
      * @override
      * @param {Location} location - the location
      * @param {string} id - the id
-     * @returns {TranslationId} - the configured instance
+     * @returns {Context} - the configured instance
      */
     static createNode(location, id)
     {
-        return new TranslationId(location, id);
+        return new Context(location, id);
     }
 
     /**
@@ -43,9 +43,9 @@ export default class TranslationId extends AbstractDirective
      * @param {string} id - the id
      * @returns {void}
      */
-    constructor(location, id, context)
+    constructor(location, id)
     {
-        super(location, DIRECTIVE_TRANSLATION_ID);
+        super(location, DIRECTIVE_CONTEXT);
 
         this._id = id;
     }
