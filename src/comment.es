@@ -59,5 +59,13 @@ export default class Comment extends AbstractDirective
     {
         return this._comment;
     }
+
+    /**
+     * @override
+     */
+    augmentToString()
+    {
+        return 'comment=\"' + this.comment + '\"';
+    }
 }
 

@@ -59,5 +59,13 @@ export default class TranslationId extends AbstractDirective
     {
         return this._id;
     }
+
+    /**
+     * @override
+     */
+    augmentToString()
+    {
+        return 'id=\"' + this.id + '\"';
+    }
 }
 

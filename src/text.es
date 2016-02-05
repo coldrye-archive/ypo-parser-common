@@ -79,5 +79,16 @@ export default class Text extends AbstractNode
     {
         return this._text;
     }
+
+    /**
+     * @override
+     */
+    augmentToString()
+    {
+        const parts = [];
+        parts.push('isEscapedDirective=\"' + this.isEscapedDirective + '\"');
+        parts.push('text=\"' + this.text + '\"');
+        return parts.join(',');
+    }
 }
 

@@ -111,6 +111,31 @@ export default class Authorship extends AbstractDirective
     {
         return this._url;
     }
+
+    /**
+     * @override
+     */
+    augmentToString()
+    {
+        const parts = [];
+        if (this.name)
+        {
+            parts.push('name=\"' + this.name + '\"');
+        }
+        if (this.alias)
+        {
+            parts.push('alias=\"' + this.alias + '\"');
+        }
+        if (this.email)
+        {
+            parts.push('email=\"' + this.email + '\"');
+        }
+        if (this.url)
+        {
+            parts.push('url=\"' + this.url + '\"');
+        }
+        return parts.join(',');
+    }
 }
 
 

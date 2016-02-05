@@ -61,7 +61,24 @@ export default class AbstractNode
      */
     toString()
     {
-        return this.constructor.name + ' [location=' + this.location + ']';
+        const parts = [];
+        parts.push('location=' + this.location);
+        const augmentation = this.augmentToString();
+        if (augmentation)
+        {
+            parts.push(augmentation);
+        }
+
+        return this.constructor.name + ' [' + parts.join(',') + ']';
+    }
+
+    /**
+     * @private
+     * @abstract
+     * @returns {string} - additional information to be included on toString()
+     */
+    augmentToString()
+    {
     }
 }
 

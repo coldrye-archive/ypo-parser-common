@@ -85,6 +85,20 @@ export class AbstractOption extends AbstractDirective
     {
         return this._value;
     }
+
+    /**
+     * @override
+     */
+    augmentToString()
+    {
+        const parts = [];
+        parts.push('key=\"' + this.key + '\"');
+        if (this.value)
+        {
+            parts.push('value=\"' + this.value + '\"');
+        }
+        return parts.join(',');
+    }
 }
 
 
