@@ -61,7 +61,9 @@ export default class Text extends AbstractNode
      * @param {boolean} isLineContinuation=false - true whether we have a line continuation
      * @returns {void}
      */
-    constructor(location, text, isEscapedDirective=false, isLineContinuation=false)
+    constructor(
+        location, text, isEscapedDirective=false, isLineContinuation=false
+    )
     {
         super(location);
 
