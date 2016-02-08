@@ -7,7 +7,8 @@
 ### chore
 
 * chore(coverage): ignore empty else ([7f5e113](https://github.com/coldrye-es/ypo-parser-common/commit/7f5e113))
-* chore(lint): fix linting issues ([f2163cd](https://github.com/coldrye-es/ypo-parser-common/commit/f2163cd))
+* chore(dependencies): removing global babel dependency as it was deprecated ([5703e6d](https://github.com/coldrye-es/ypo-parser-common/commit/5703e6d))
+* chore(lint): fix linting issues ([aa865e0](https://github.com/coldrye-es/ypo-parser-common/commit/aa865e0))
 * chore(tests): fix node toString test ([1f83434](https://github.com/coldrye-es/ypo-parser-common/commit/1f83434))
 
 ### feat
