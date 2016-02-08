@@ -19,7 +19,7 @@
 import
 {
     DIRECTIVE_OPTION, OPTION_LANG, OPTION_NS, OPTION_PLURAL,
-    REGEXP_CARDINALITY, REGEXP_LANGID, REGEXP_QNAME
+    REGEXP_CARDINALITY, REGEXP_LANGID, REGEXP_QNAME, REGEXP_NSNAME
 } from './constants';
 
 import AbstractDirective from './directive';
@@ -169,7 +169,7 @@ export class Namespace extends AbstractUnitOption
     {
         if (
             typeof value != 'string'
-            || REGEXP_QNAME.exec(value) === null
+            || REGEXP_NSNAME.exec(value) === null
         )
         {
             throw new ParseError(

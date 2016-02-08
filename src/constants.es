@@ -20,7 +20,7 @@
  * The default namespace assigned to a translation unit if none was specified.
  *
  * By default, all translation units will have ``translation`` assigned as their
- * default namespace.
+ * default namespace unless overridden by user defaults.
  *
  * @public
  */
@@ -102,5 +102,22 @@ export const REGEXP_LANGID = /^[a-z]{2,3}(?:[-][A-Z]{2,3})?$/;
 /**
  * @private
  */
-export const REGEXP_QNAME = /^[a-zA-Z0-9]+$/;
+export const REGEXP_QNAME = /^[a-zA-Z0-9$]+$/;
+
+
+/**
+ * @private
+ */
+export const NSQNAME = '[a-zA-Z0-9$-_]+';
+
+
+/**
+ * @private
+ */
+export const REGEXP_NSNAME = new RegExp(
+    '^'
+    + NSQNAME
+    + '(?:[.]' + NSQNAME + ')*'
+    + '$'
+);
 
