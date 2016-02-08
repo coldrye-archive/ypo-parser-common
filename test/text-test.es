@@ -67,7 +67,7 @@ function ()
         it('#text must no longer contain escape character',
         function ()
         {
-            assert.equal(fixtures.DIRECTIVE, cut3.text);
+            assert.equal(cut3.text, fixtures.DIRECTIVE);
         });
 
         const cut4 = Text.createNode(
@@ -77,7 +77,23 @@ function ()
         it('#text whitespace must be preserved',
         function ()
         {
-            assert.equal(fixtures.WHITESPACE_PRESERVED, cut4.text);
+            assert.equal(cut4.text, fixtures.WHITESPACE_PRESERVED);
+        });
+
+        const cut5 = Text.createNode(
+            fixtures.TEST_LOCATION, fixtures.LINE_CONTINUATION
+        );
+
+        it('#isLineContinuation must return true',
+        function ()
+        {
+            assert.ok(cut5.isLineContinuation);
+        });
+
+        it('#text must no longer contain line continuation escape',
+        function ()
+        {
+            assert.equal(cut5.text, fixtures.TEXT);
         });
     });
 });

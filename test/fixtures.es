@@ -46,6 +46,9 @@ export const TEXT = 'text w numb3rs';
 export const ESCAPED_DIRECTIVE = '\\# ' + TEST_DIRECTIVE;
 
 
+export const LINE_CONTINUATION = TEXT + '\\';
+
+
 export const DIRECTIVE = '# ' + TEST_DIRECTIVE;
 
 

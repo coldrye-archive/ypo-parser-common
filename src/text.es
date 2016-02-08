@@ -42,7 +42,15 @@ export default class Text extends AbstractNode
             actualText = text.substring(1);
         }
 
-        return new Text(location, actualText, isEscapedDirective);
+        let isLineContinuation = actualText[actualText.length - 1] == '\\';
+        if (isLineContinuation)
+        {
+            actualText = text.substring(0, actualText.length - 1);
+        }
+
+        return new Text(
+            location, actualText, isEscapedDirective, isLineContinuation
+        );
     }
 
     /**
@@ -50,13 +58,15 @@ export default class Text extends AbstractNode
      * @param {string} text - the text
      * @param {boolean} isEscapedDirective - true whether text represents an
      *                                       escaped directive
+     * @param {boolean} isLineContinuation - true whether we have a line continuation
      * @returns {void}
      */
-    constructor(location, text, isEscapedDirective)
+    constructor(location, text, isEscapedDirective, isLineContinuation)
     {
         super(location);
 
-        this._isEscapedDirective = isEscapedDirective;
+        this._isEscapedDirective = !!isEscapedDirective;
+        this._isLineContinuation = !!isLineContinuation;
         this._text = text;
     }
 
@@ -71,6 +81,16 @@ export default class Text extends AbstractNode
     }
 
     /**
+     * Gets whether this needs to be merged with the following text token.
+     *
+     * @returns {boolean} - true whether this needs to be merged with the following token
+     */
+    get isLineContinuation()
+    {
+        return this._isLineContinuation;
+    }
+
+    /**
      * Gets the text.
      *
      * @returns {string} - the text
@@ -82,11 +102,13 @@ export default class Text extends AbstractNode
 
     /**
      * @override
+     * @returns {string} - the augmented string
      */
     augmentToString()
     {
         const parts = [];
         parts.push('isEscapedDirective=\"' + this.isEscapedDirective + '\"');
+        parts.push('isLineContinuation=\"' + this.isLineContinuation + '\"');
         parts.push('text=\"' + this.text + '\"');
         return parts.join(',');
     }
