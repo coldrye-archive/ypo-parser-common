@@ -118,18 +118,22 @@ export default class Authorship extends AbstractDirective
     augmentToString()
     {
         const parts = [];
+        /* istanbul ignore else */
         if (this.name)
         {
             parts.push('name=\"' + this.name + '\"');
         }
+        /* istanbul ignore else */
         if (this.alias)
         {
             parts.push('alias=\"' + this.alias + '\"');
         }
+        /* istanbul ignore else */
         if (this.email)
         {
             parts.push('email=\"' + this.email + '\"');
         }
+        /* istanbul ignore else */
         if (this.url)
         {
             parts.push('url=\"' + this.url + '\"');
