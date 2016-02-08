@@ -56,17 +56,17 @@ export default class Text extends AbstractNode
     /**
      * @param {Location} location - the location
      * @param {string} text - the text
-     * @param {boolean} isEscapedDirective - true whether text represents an
+     * @param {boolean} isEscapedDirective=false - true whether text represents an
      *                                       escaped directive
-     * @param {boolean} isLineContinuation - true whether we have a line continuation
+     * @param {boolean} isLineContinuation=false - true whether we have a line continuation
      * @returns {void}
      */
-    constructor(location, text, isEscapedDirective, isLineContinuation)
+    constructor(location, text, isEscapedDirective=false, isLineContinuation=false)
     {
         super(location);
 
-        this._isEscapedDirective = !!isEscapedDirective;
-        this._isLineContinuation = !!isLineContinuation;
+        this._isEscapedDirective = isEscapedDirective;
+        this._isLineContinuation = isLineContinuation;
         this._text = text;
     }
 

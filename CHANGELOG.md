@@ -1,3 +1,26 @@
+<a name="0.0.4"></a>
+## 0.0.4 (2016-02-08)
+
+
+* version bump v0.0.4 ([70b77ad](https://github.com/coldrye-es/ypo-parser-common/commit/70b77ad))
+
+### chore
+
+* chore(coverage): ignore empty else ([7f5e113](https://github.com/coldrye-es/ypo-parser-common/commit/7f5e113))
+* chore(lint): fix linting issues ([f2163cd](https://github.com/coldrye-es/ypo-parser-common/commit/f2163cd))
+* chore(tests): fix node toString test ([1f83434](https://github.com/coldrye-es/ypo-parser-common/commit/1f83434))
+
+### feat
+
+* feat(namespace): add support for more complex namespaces ([5ed4b67](https://github.com/coldrye-es/ypo-parser-common/commit/5ed4b67))
+* feat(text): line continuation support ([bebb25a](https://github.com/coldrye-es/ypo-parser-common/commit/bebb25a))
+
+### fix
+
+* fix(src): toString() must include extra information ([749a0a9](https://github.com/coldrye-es/ypo-parser-common/commit/749a0a9))
+
+
+
 <a name="0.0.3"></a>
 ## 0.0.3 (2016-02-04)
 
