@@ -30,6 +30,7 @@ export default class AbstractNode
      */
     constructor(location)
     {
+        // TODO:assert location
         this._location = location;
     }
 
