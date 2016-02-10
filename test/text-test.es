@@ -51,7 +51,7 @@ function ()
         it('must return properly configured instance',
         function ()
         {
-            assert.deepEqual(cut, cut2);
+            assert.deepEqual(cut2, cut);
         });
 
         const cut3 = Text.createNode(
