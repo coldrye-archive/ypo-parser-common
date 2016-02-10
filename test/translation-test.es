@@ -35,7 +35,7 @@ function ()
 {
     const cut = new Translation(TEST_LOCATION);
 
-    util.basicNodeTests(
+    util.basicSymbolTests(
         cut, TEST_LOCATION, util.nodeStringValue(Translation, TEST_LOCATION)
     );
 

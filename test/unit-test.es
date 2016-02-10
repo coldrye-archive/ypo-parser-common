@@ -31,7 +31,7 @@ function ()
 {
     const cut = new Unit(TEST_LOCATION);
 
-    util.basicNodeTests(
+    util.basicSymbolTests(
         cut, TEST_LOCATION, util.nodeStringValue(Unit, TEST_LOCATION)
     );
 

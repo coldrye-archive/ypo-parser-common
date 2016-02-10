@@ -52,7 +52,7 @@ function ()
 
     const cut = new Variation(TEST_LOCATION, translation);
 
-    util.basicNodeTests(
+    util.basicSymbolTests(
         cut, TEST_LOCATION, util.nodeStringValue(Variation, TEST_LOCATION)
     );
 
