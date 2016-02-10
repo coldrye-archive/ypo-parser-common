@@ -84,10 +84,10 @@ function ()
             fixtures.TEST_LOCATION, fixtures.LINE_CONTINUATION
         );
 
-        it('#isLineContinuation must return true',
+        it('#isContinuation must return true',
         function ()
         {
-            assert.ok(cut5.isLineContinuation);
+            assert.ok(cut5.isContinuation);
         });
 
         it('#text must no longer contain line continuation escape',

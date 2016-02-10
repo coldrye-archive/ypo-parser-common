@@ -22,8 +22,8 @@ import AbstractNode from './node';
 
 
 /**
- * The class Text models a token that represents a single location from the input
- * file.
+ * The class Text models a token that represents a single line of text from the
+ * input file.
  */
 export default class Text extends AbstractNode
 {
@@ -42,14 +42,14 @@ export default class Text extends AbstractNode
             actualText = text.substring(1);
         }
 
-        let isLineContinuation = actualText[actualText.length - 1] == '\\';
-        if (isLineContinuation)
+        let isContinuation = actualText[actualText.length - 1] == '\\';
+        if (isContinuation)
         {
             actualText = text.substring(0, actualText.length - 1);
         }
 
         return new Text(
-            location, actualText, isEscapedDirective, isLineContinuation
+            location, actualText, isEscapedDirective, isContinuation
         );
     }
 
@@ -58,17 +58,17 @@ export default class Text extends AbstractNode
      * @param {string} text - the text
      * @param {boolean} isEscapedDirective=false - true whether text represents an
      *                                       escaped directive
-     * @param {boolean} isLineContinuation=false - true whether we have a line continuation
+     * @param {boolean} isContinuation=false - true whether we have a line continuation
      * @returns {void}
      */
     constructor(
-        location, text, isEscapedDirective=false, isLineContinuation=false
+        location, text, isEscapedDirective=false, isContinuation=false
     )
     {
         super(location);
 
         this._isEscapedDirective = isEscapedDirective;
-        this._isLineContinuation = isLineContinuation;
+        this._isContinuation = isContinuation;
         this._text = text;
     }
 
@@ -87,9 +87,9 @@ export default class Text extends AbstractNode
      *
      * @returns {boolean} - true whether this needs to be merged with the following token
      */
-    get isLineContinuation()
+    get isContinuation()
     {
-        return this._isLineContinuation;
+        return this._isContinuation;
     }
 
     /**
@@ -110,7 +110,7 @@ export default class Text extends AbstractNode
     {
         const parts = [];
         parts.push('isEscapedDirective=\"' + this.isEscapedDirective + '\"');
-        parts.push('isLineContinuation=\"' + this.isLineContinuation + '\"');
+        parts.push('isContinuation=\"' + this.isContinuation + '\"');
         parts.push('text=\"' + this.text + '\"');
         return parts.join(',');
     }
