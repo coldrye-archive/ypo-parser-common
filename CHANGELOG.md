@@ -1,3 +1,28 @@
+<a name="0.0.5"></a>
+## 0.0.5 (2016-02-10)
+
+
+* version bump v0.0.5 ([1c897dc](https://github.com/coldrye-es/ypo-parser-common/commit/1c897dc))
+
+### chore
+
+* chore(tests): must test using basicSymbolTests ([c2d7b65](https://github.com/coldrye-es/ypo-parser-common/commit/c2d7b65))
+* chore(tests): mixed up expected and actual ([fb90bed](https://github.com/coldrye-es/ypo-parser-common/commit/fb90bed))
+
+### feat
+
+* feat(compoundtext): add CompoundText node for combining multiple subsequent lines of text into a sin ([b4f6b9f](https://github.com/coldrye-es/ypo-parser-common/commit/b4f6b9f))
+
+### refactor
+
+* refactor(text): rename isLineContinuation ([17cb7f7](https://github.com/coldrye-es/ypo-parser-common/commit/17cb7f7))
+
+### todo
+
+* todo(node): location must be asserted ([57a3e86](https://github.com/coldrye-es/ypo-parser-common/commit/57a3e86))
+
+
+
 <a name="0.0.4"></a>
 ## 0.0.4 (2016-02-08)
 
