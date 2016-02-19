@@ -1,3 +1,12 @@
+<a name="0.0.6"></a>
+## 0.0.6 (2016-02-20)
+
+
+* version bump v0.0.6 ([b35fdb4](https://github.com/coldrye-es/ypo-parser-common/commit/b35fdb4))
+* Refactor existing sources ([b35fdb4](https://github.com/coldrye-es/ypo-parser-common/commit/b35fdb4))
+
+
+
 <a name="0.0.5"></a>
 ## 0.0.5 (2016-02-10)
 

@@ -19,7 +19,7 @@
 import assert from 'esaver';
 
 
-export function nodeStringValue(type, location)
+export function tokenStringValue(type, location)
 {
     return (typeof type == 'object'
             ? type.constructor.name
@@ -27,12 +27,12 @@ export function nodeStringValue(type, location)
 }
 
 
-export function basicNodeTests(node, location)
+export function basicTokenTests(token, location)
 {
     it('#location must return the correct location',
     function ()
     {
-        assert.deepEqual(node.location, location);
+        assert.deepEqual(token.location, location);
     });
 
     it('#accept must call visitor#visit()',
@@ -43,64 +43,64 @@ export function basicNodeTests(node, location)
         {
             visit(visited)
             {
-                assert.deepEqual(visited, node);
+                assert.deepEqual(visited, token);
             }
         }
-        node.accept(new VisitorImpl());
+        token.accept(new VisitorImpl());
     });
 
     it('#toString must return the correct information',
     function ()
     {
-        assert.ok(node.toString().indexOf(
-            nodeStringValue(node, location)) == 0
+        assert.ok(token.toString().indexOf(
+            tokenStringValue(token, location)) == 0
         );
     });
 }
 
 
-export function basicDirectiveTests(node, location, directive)
+export function basicDirectiveTests(token, location, directive)
 {
-    basicNodeTests(node, location);
+    basicTokenTests(token, location);
 
     it('#directive must not be undefined',
     function ()
     {
-        assert.ok(node.directive !== undefined);
+        assert.ok(token.directive !== undefined);
     });
 
     it('#directive must return the correct value',
     function ()
     {
-        assert.equal(node.directive, directive);
+        assert.equal(token.directive, directive);
     });
 }
 
 
-export function basicSymbolTests(node, location, {comments, options} = {})
+export function basicSymbolTests(token, location, {comments, options} = {})
 {
-    basicNodeTests(node, location);
+    basicTokenTests(token, location);
 
     it('#comments must return correct value',
     function ()
     {
-        assert.deepEqual(node.comments, comments);
+        assert.deepEqual(token.comments, comments);
     });
 
     it('#options must return correct value',
     function ()
     {
-        assert.deepEqual(node.options, options);
+        assert.deepEqual(token.options, options);
     });
 
     it('#options when set must return correct value',
     function ()
     {
-        const orig = node.options;
+        const orig = token.options;
         const repl = [];
-        node.options = repl;
-        assert.strictEqual(node.options, repl);
-        node.options = orig;
+        token.options = repl;
+        assert.strictEqual(token.options, repl);
+        token.options = orig;
     });
 }
 

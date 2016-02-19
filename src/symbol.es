@@ -16,13 +16,13 @@
  */
 
 
-import AbstractNode from './node';
+import AbstractToken from './token';
 
 
 /**
  * The class AbstractSymbol models the root of a hierarchy of derived classes.
  */
-export default class AbstractSymbol extends AbstractNode
+export default class AbstractSymbol extends AbstractToken
 {
     constructor(location, comments, options)
     {

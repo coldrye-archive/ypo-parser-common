@@ -18,18 +18,18 @@
 
 import assert from 'esaver';
 
-import Text from '../src/text';
+import Line from '../src/line';
 
 import * as util from './util';
 import * as fixtures from './fixtures';
 
 
-describe('Text',
+describe('Line',
 function ()
 {
-    const cut = new Text(fixtures.TEST_LOCATION, fixtures.TEXT, false);
+    const cut = new Line(fixtures.TEST_LOCATION, fixtures.TEXT, false);
 
-    util.basicNodeTests(cut, fixtures.TEST_LOCATION);
+    util.basicTokenTests(cut, fixtures.TEST_LOCATION);
 
     it('#text must return correct value',
     function ()
@@ -46,7 +46,7 @@ function ()
     describe('.createNode()',
     function ()
     {
-        const cut2 = Text.createNode(fixtures.TEST_LOCATION, fixtures.TEXT);
+        const cut2 = Line.createNode(fixtures.TEST_LOCATION, fixtures.TEXT);
 
         it('must return properly configured instance',
         function ()
@@ -54,7 +54,7 @@ function ()
             assert.deepEqual(cut2, cut);
         });
 
-        const cut3 = Text.createNode(
+        const cut3 = Line.createNode(
             fixtures.TEST_LOCATION, fixtures.ESCAPED_DIRECTIVE
         );
 
@@ -70,7 +70,7 @@ function ()
             assert.equal(cut3.text, fixtures.DIRECTIVE);
         });
 
-        const cut4 = Text.createNode(
+        const cut4 = Line.createNode(
             fixtures.TEST_LOCATION, fixtures.WHITESPACE_PRESERVED
         );
 
@@ -80,7 +80,7 @@ function ()
             assert.equal(cut4.text, fixtures.WHITESPACE_PRESERVED);
         });
 
-        const cut5 = Text.createNode(
+        const cut5 = Line.createNode(
             fixtures.TEST_LOCATION, fixtures.LINE_CONTINUATION
         );
 

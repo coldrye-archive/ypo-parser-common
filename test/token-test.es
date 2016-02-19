@@ -32,7 +32,7 @@ function ()
 
     const cut = new TokenImpl(TEST_LOCATION);
 
-    util.basicNodeTests(cut, TEST_LOCATION);
+    util.basicTokenTests(cut, TEST_LOCATION);
 
     it('#isWhitespace must return false',
     function ()

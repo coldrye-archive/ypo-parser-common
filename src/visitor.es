@@ -22,12 +22,12 @@
 export default class AbstractVisitor
 {
     /**
-     * Visits the specified node.
+     * Visits the specified token.
      *
-     * @param {AbstractNode} node - the node to visit
+     * @param {AbstractToken} token - the node to visit
      */
     /* eslint no-unused-vars:0 */
-    visit(node)
+    visit(token)
     {
         throw new Error('derived classes must implement this.');
     }

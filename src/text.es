@@ -16,103 +16,16 @@
  */
 
 
-import {REGEXP_ESCAPED_DIRECTIVE} from './constants';
-
-import AbstractNode from './node';
+import AbstractToken from './token';
 
 
 /**
- * The class Text models a token that represents a single line of text from the
- * input file.
+ * The abstract class AbstractText models the root of a hierarchy of derived
+ * classes representing artifacts of the parse process.
+ *
+ * @abstract
  */
-export default class Text extends AbstractNode
+export default class AbstractText extends AbstractToken
 {
-    /**
-     * @override
-     * @param {Location} location - the location
-     * @param {string} text - the text
-     * @returns {Text} - the configured token
-     */
-    static createNode(location, text)
-    {
-        let isEscapedDirective = REGEXP_ESCAPED_DIRECTIVE.exec(text) !== null;
-        let actualText = text;
-        if (isEscapedDirective)
-        {
-            actualText = text.substring(1);
-        }
-
-        let isContinuation = actualText[actualText.length - 1] == '\\';
-        if (isContinuation)
-        {
-            actualText = text.substring(0, actualText.length - 1);
-        }
-
-        return new Text(
-            location, actualText, isEscapedDirective, isContinuation
-        );
-    }
-
-    /**
-     * @param {Location} location - the location
-     * @param {string} text - the text
-     * @param {boolean} isEscapedDirective=false - true whether text represents an
-     *                                       escaped directive
-     * @param {boolean} isContinuation=false - true whether we have a line continuation
-     * @returns {void}
-     */
-    constructor(
-        location, text, isEscapedDirective=false, isContinuation=false
-    )
-    {
-        super(location);
-
-        this._isEscapedDirective = isEscapedDirective;
-        this._isContinuation = isContinuation;
-        this._text = text;
-    }
-
-    /**
-     * Gets whether this is an escaped directive.
-     *
-     * @returns {boolean} - true whether this is an escaped directive
-     */
-    get isEscapedDirective()
-    {
-        return this._isEscapedDirective;
-    }
-
-    /**
-     * Gets whether this needs to be merged with the following text token.
-     *
-     * @returns {boolean} - true whether this needs to be merged with the following token
-     */
-    get isContinuation()
-    {
-        return this._isContinuation;
-    }
-
-    /**
-     * Gets the text.
-     *
-     * @returns {string} - the text
-     */
-    get text()
-    {
-        return this._text;
-    }
-
-    /**
-     * @override
-     * @returns {string} - the augmented string
-     */
-    augmentToString()
-    {
-        const parts = [];
-        parts.push('isEscapedDirective=\"' + this.isEscapedDirective + '\"');
-        parts.push('isContinuation=\"' + this.isContinuation + '\"');
-        parts.push('text=\"' + this.text + '\"');
-        return parts.join(',');
-    }
 }
 

@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-import {EMPTY_STRING} from './constants';
 
-import AbstractToken from './token';
+import AbstractText from './text';
+import {EMPTY_STRING} from './constants';
 
 
 /**
  * The class EmptyLine models a token of the lexer that represents an empty location in
  * the input file.
  */
-export default class EmptyLine extends AbstractToken
+export default class EmptyLine extends AbstractText
 {
     /**
      * @param {Location} location - the location

@@ -29,7 +29,7 @@ function ()
 {
     const cut = new EmptyLine(fixtures.TEST_LOCATION, fixtures.TEXT, false);
 
-    util.basicNodeTests(cut, fixtures.TEST_LOCATION);
+    util.basicTokenTests(cut, fixtures.TEST_LOCATION);
 
     it('#text must return correct value',
     function ()

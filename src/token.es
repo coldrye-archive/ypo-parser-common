@@ -16,16 +16,13 @@
  */
 
 
-import AbstractNode from './node';
-
-
 /**
  * The abstract class AbstractToken models the root of a hierarchy of derived classes
  * representing tokens produced by the lexer.
  *
  * @abstract
  */
-export default class AbstractToken extends AbstractNode
+export default class AbstractToken
 {
     /**
      * Factory for creating instances of this.
@@ -38,6 +35,64 @@ export default class AbstractToken extends AbstractNode
     static createNode(location)
     {
         throw new Error('derived classes must implement this.');
+    }
+
+    /**
+     * @param {Location} location - the location
+     * @returns {void}
+     */
+    constructor(location)
+    {
+        // TODO:assert location
+        this._location = location;
+    }
+
+    /**
+     * Gets the location associated with this token.
+     *
+     * @returns {Location} - the location
+     */
+    get location()
+    {
+        return this._location;
+    }
+
+    /**
+     * Instructs the specified visitor to visit this.
+     *
+     * @param {AbstractVisitor} visitor - the visitor
+     * @returns {void}
+     */
+    accept(visitor)
+    {
+        visitor.visit(this);
+    }
+
+    /**
+     * Renders a textual representation of this.
+     *
+     * @returns {string} - the string representation
+     */
+    toString()
+    {
+        const parts = [];
+        parts.push('location=' + this.location);
+        const augmentation = this.augmentToString();
+        if (augmentation)
+        {
+            parts.push(augmentation);
+        }
+
+        return this.constructor.name + ' [' + parts.join(',') + ']';
+    }
+
+    /**
+     * @private
+     * @abstract
+     * @returns {string} - additional information to be included on toString()
+     */
+    augmentToString()
+    {
     }
 
     /**

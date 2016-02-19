@@ -19,7 +19,7 @@
 import assert from 'esaver';
 
 import CompoundText from '../src/compoundtext';
-import Text from '../src/text';
+import Line from '../src/line';
 
 import * as util from './util';
 import {TEST_LOCATION} from './fixtures';
@@ -29,21 +29,21 @@ describe('CompoundText',
 function ()
 {
     const cut = new CompoundText(TEST_LOCATION);
-    const t1 = Text.createNode(TEST_LOCATION, 'line1');
-    const t2 = Text.createNode(TEST_LOCATION, '\n');
+    const t1 = Line.createNode(TEST_LOCATION, 'line1');
+    const t2 = Line.createNode(TEST_LOCATION, '\n');
 
-    it('#addNode() must behave as expected',
+    it('#addToken() must behave as expected',
     function ()
     {
         assert.expect(2);
-        cut.addNode(t1);
-        assert.deepEqual(cut.nodes, [t1]);
-        cut.addNode(t2);
-        assert.deepEqual(cut.nodes, [t1,t2]);
+        cut.addToken(t1);
+        assert.deepEqual(cut.tokens, [t1]);
+        cut.addToken(t2);
+        assert.deepEqual(cut.tokens, [t1,t2]);
     });
 
-    util.basicNodeTests(
-        cut, TEST_LOCATION, util.nodeStringValue(CompoundText, TEST_LOCATION)
+    util.basicTokenTests(
+        cut, TEST_LOCATION, util.tokenStringValue(CompoundText, TEST_LOCATION)
     );
 
     describe('.createNode()',
@@ -57,7 +57,7 @@ function ()
             assert.deepEqual(cut2, cut);
         });
 
-        it('must not fail on missing nodes',
+        it('must not fail on missing tokens',
         function ()
         {
             assert.doesNotThrow(
@@ -69,10 +69,10 @@ function ()
     });
 
     const cut2 = new CompoundText(TEST_LOCATION);
-    const t3 = Text.createNode(TEST_LOCATION, 'line3');
-    cut2.addNode(t1);
-    cut2.addNode(t2);
-    cut2.addNode(t3);
+    const t3 = Line.createNode(TEST_LOCATION, 'line3');
+    cut2.addToken(t1);
+    cut2.addToken(t2);
+    cut2.addToken(t3);
 
     describe('when combining multiple separate lines',
     function ()
@@ -85,9 +85,9 @@ function ()
     });
 
     const cut3 = new CompoundText(TEST_LOCATION);
-    const t4 = Text.createNode(TEST_LOCATION, 'line1 \\');
-    cut3.addNode(t4);
-    cut3.addNode(cut2);
+    const t4 = Line.createNode(TEST_LOCATION, 'line1 \\');
+    cut3.addToken(t4);
+    cut3.addToken(cut2);
 
     describe('when combining continuations with a compound of separate lines',
     function ()
@@ -100,8 +100,8 @@ function ()
     });
 
     const cut4 = new CompoundText(TEST_LOCATION);
-    cut4.addNode(cut3);
-    cut4.addNode(cut2);
+    cut4.addToken(cut3);
+    cut4.addToken(cut2);
 
     describe(
     'when combining a continuation compound with a separate line compound',
@@ -115,8 +115,8 @@ function ()
     });
 
     const cut5 = new CompoundText(TEST_LOCATION);
-    cut5.addNode(cut2);
-    cut5.addNode(cut3);
+    cut5.addToken(cut2);
+    cut5.addToken(cut3);
 
     describe(
     'when combining a separate line compound with a continuation compound',

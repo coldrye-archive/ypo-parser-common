@@ -16,31 +16,31 @@
  */
 
 
-import AbstractToken from './node';
+import AbstractText from './text';
 
 
 /**
  * The class CompoundText models a token that combines multiple subsequent
- * text nodes.
+ * text tokens.
  *
  * As such this may either represent a sequence of continuation lines, or
  * a sequence of multiple separate lines or a combination of both.
  */
-export default class CompoundText extends AbstractToken
+export default class CompoundText extends AbstractText
 {
     /**
      * @override
      * @param {Location} location - the location
-     * @param {Array<AbstractNode>} nodes - the child nodes
+     * @param {Array<AbstractToken>} tokens - the child tokens
      * @returns {CompoundText} - the configured token
      */
-    static createNode(location, nodes = [])
+    static createNode(location, tokens = [])
     {
         const result = new CompoundText(location);
 
-        for (const node of nodes)
+        for (const token of tokens)
         {
-            result.addNode(node);
+            result.addToken(token);
         }
 
         return result;
@@ -54,7 +54,7 @@ export default class CompoundText extends AbstractToken
     {
         super(location);
 
-        this._nodes = [];
+        this._tokens = [];
     }
 
     /**
@@ -68,33 +68,33 @@ export default class CompoundText extends AbstractToken
         let result = false;
 
         /* istanbul ignore else */
-        if (this.nodes)
+        if (this.tokens)
         {
-            result = this.nodes[0].isContinuation;
+            result = this.tokens[0].isContinuation;
         }
 
         return result;
     }
 
     /**
-     * Gets the nodes.
+     * Gets the tokens.
      *
-     * @returns {Array<AbstractNode>} - the nodes
+     * @returns {Array<AbstractToken>} - the tokens
      */
-    get nodes()
+    get tokens()
     {
-        return this._nodes;
+        return this._tokens;
     }
 
     /**
-     * Adds the specified node.
+     * Adds the specified token.
      *
-     * @param {AbstractNode} node - the node
+     * @param {AbstractToken} token - the node
      * @returns {void}
      */
-    addNode(node)
+    addToken(token)
     {
-        this._nodes.push(node);
+        this._tokens.push(token);
     }
 
     /**
@@ -104,9 +104,9 @@ export default class CompoundText extends AbstractToken
     augmentToString()
     {
         const parts = [];
-        for (const node of this.nodes)
+        for (const token of this.tokens)
         {
-            parts.push(node.toString());
+            parts.push(token.toString());
         }
         return 'lines=' + parts.join(',');
     }

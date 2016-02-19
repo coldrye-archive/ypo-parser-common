@@ -32,7 +32,7 @@ function ()
     const cut = new Unit(TEST_LOCATION);
 
     util.basicSymbolTests(
-        cut, TEST_LOCATION, util.nodeStringValue(Unit, TEST_LOCATION)
+        cut, TEST_LOCATION, util.tokenStringValue(Unit, TEST_LOCATION)
     );
 
     it('#authorships must return correct value',

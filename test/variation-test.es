@@ -22,7 +22,7 @@ import Variation from '../src/variation';
 import Comment from '../src/comment';
 import Translation from '../src/translation';
 import TranslationId from '../src/translationid';
-import Text from '../src/text';
+import Line from '../src/line';
 import {Plural} from '../src/option';
 import ParseError from '../src/exceptions';
 
@@ -53,12 +53,12 @@ function ()
     const cut = new Variation(TEST_LOCATION, translation);
 
     util.basicSymbolTests(
-        cut, TEST_LOCATION, util.nodeStringValue(Variation, TEST_LOCATION)
+        cut, TEST_LOCATION, util.tokenStringValue(Variation, TEST_LOCATION)
     );
 
     const comment = new Comment(TEST_LOCATION, 'comment');
     const opt1 = new Plural(TEST_LOCATION);
-    const text = new Text(TEST_LOCATION, 'text');
+    const text = new Line(TEST_LOCATION, 'text');
 
     const cut2 = new Variation(
         TEST_LOCATION, translation, [comment], [opt1], [text]

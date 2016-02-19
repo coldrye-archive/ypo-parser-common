@@ -18,7 +18,7 @@
 
 import assert from 'esaver';
 
-import AbstractNode from '../src/node';
+import AbstractToken from '../src/token';
 import ParseError from '../src/exceptions';
 
 import {TEST_LOCATION, TEST_LOCATION1} from './fixtures';
@@ -58,12 +58,12 @@ function ()
         );
     });
 
-    class NodeImpl extends AbstractNode
+    class TokenImpl extends AbstractToken
     {}
 
-    const node = new NodeImpl(TEST_LOCATION);
+    const token = new TokenImpl(TEST_LOCATION);
 
-    const cut2 = new ParseError('message', {token:node});
+    const cut2 = new ParseError('message', {token:token});
 
     it('#location must be derived from token on missing location',
     function ()
@@ -74,7 +74,7 @@ function ()
     it('#token must return the correct value',
     function ()
     {
-        assert.deepEqual(node, cut2.token);
+        assert.deepEqual(token, cut2.token);
     });
 
     it('#toString() must return the correct value',
@@ -82,13 +82,13 @@ function ()
     {
         assert.equal(
             'ParseError: message [location=' + TEST_LOCATION.toString()
-            + ',token=' + node.toString() + ']',
+            + ',token=' + token.toString() + ']',
             cut2.toString()
         );
     });
 
     const cut3 = new ParseError(
-        'message', {location:TEST_LOCATION1, token:node}
+        'message', {location:TEST_LOCATION1, token:token}
     );
 
     it('#location location takes precedence over token.location',
@@ -100,7 +100,7 @@ function ()
     it('#token must return the correct value',
     function ()
     {
-        assert.deepEqual(node, cut3.token);
+        assert.deepEqual(token, cut3.token);
     });
 
     it('#toString() must return the correct value',
@@ -108,7 +108,7 @@ function ()
     {
         assert.equal(
             'ParseError: message [location=' + TEST_LOCATION1.toString()
-            + ',token=' + node.toString() + ']',
+            + ',token=' + token.toString() + ']',
             cut3.toString()
         );
     });

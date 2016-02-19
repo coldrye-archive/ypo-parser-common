@@ -1,6 +1,6 @@
 {
   "name": "ypo-parser-common",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Commonly shared code for use by ypo parser implementations",
   "keywords": [
     "ypo",
@@ -41,7 +41,7 @@
     "prepublish": "test \"${MASTER}\" = \"1\" || (echo ${npm_config_argv} | grep -E '(install|update)' >/dev/null 2>/dev/null || (echo 'use *make publish* instead' && exit 1))"
   },
   "dependencies": {
-    "esbases": ">=0.0.3"
+    "esbases": ">=0.0"
   },
   "devDependencies": {
     "babel-plugin-external-helpers-2": ">=6.3.x",
