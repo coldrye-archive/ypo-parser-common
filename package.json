@@ -1,6 +1,6 @@
 {
   "name": "ypo-parser-common",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Commonly shared code for use by ypo parser implementations",
   "keywords": [
     "ypo",
