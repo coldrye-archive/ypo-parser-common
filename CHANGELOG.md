@@ -1,3 +1,10 @@
+<a name="0.0.8"></a>
+## [0.0.8](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.7...v0.0.8) (2016-04-23)
+
+previous NPM release is faulty and does not contain latest sources... *sigh*
+
+
+
 <a name="0.0.7"></a>
 ## [0.0.7](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.5...v0.0.7) (2016-04-23)
 
