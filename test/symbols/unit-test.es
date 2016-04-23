@@ -48,13 +48,13 @@ function ()
     it('#authorships must return correct value',
     function ()
     {
-        should.not.exist(cut.authorships);
+        cut.authorships.should.deep.equal([]);
     });
 
     it('#translations must return correct value',
     function ()
     {
-        should.not.exist(cut.translations);
+        cut.translations.should.deep.equal([]);
     });
 
     it('#translations when set must return correct value',

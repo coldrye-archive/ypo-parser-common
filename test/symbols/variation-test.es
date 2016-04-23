@@ -103,13 +103,13 @@ function ()
     it('#text must return correct value',
     function ()
     {
-        cut.text.should.deep.equal(text);
+        cut.text.tokens.should.deep.equal([text]);
     });
 
-    it('#plural must return correct value',
+    it('#plural == undefined',
     function ()
     {
-        cut.plural.should.deep.equal(opt1);
+        should.not.exist(cut.plural);
     });
 
     it('#translation = undefined must fail',
