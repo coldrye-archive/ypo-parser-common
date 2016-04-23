@@ -1,3 +1,20 @@
+<a name="0.0.7"></a>
+## [0.0.7](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.5...v0.0.7) (2016-04-23)
+
+
+### Code Refactoring
+
+* fixes #11 ([8afdc2d](https://github.com/coldrye-es/ypo-parser-common/commit/8afdc2d)), closes [#11](https://github.com/coldrye-es/ypo-parser-common/issues/11)
+
+
+### BREAKING CHANGES
+
+* complete revision of the API
+* plural is now a directive instead of an option
+* model can now be used as a backend for visual editors
+
+
+
 <a name="0.0.6"></a>
 ## 0.0.6 (2016-02-20)
 
