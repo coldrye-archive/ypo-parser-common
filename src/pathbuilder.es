@@ -18,45 +18,46 @@
 
 import path from 'path';
 
-import {DEFAULT_NS} from './constants';
+import {DEFAULT_NS, REGEXP_LANGID, REGEXP_NSFQNAME} from './directives/option';
+import {isString, isNonEmptyString} from './utils';
 
 
 /**
  * The class PathBuilder models a builder for both output and input paths.
- *
- * @public
  */
 export default class PathBuilder
 {
     /**
-     * @public
-     * @param {string} basepath - the resolved base path
-     * @param {string} extension - the file extension without the leading dot
-     * @returns {void}
+     * @param {String} basepath - the base path
+     * @param {String} extension - the file extension
      */
     constructor(basepath, extension)
     {
-        /* istanbul ignore else */
-        if (typeof basepath != 'string' || !basepath.length)
+        if (!isString(basepath))
         {
-            throw new TypeError('MSG_BASEPATH_MUST_BE_NON_EMPTY_STRING');
+            throw new TypeError('basepath must be a string');
         }
 
-        /* istanbul ignore else */
-        if (typeof extension != 'string' || !extension.length)
+        if (!isNonEmptyString(extension))
         {
-            throw new TypeError('MSG_EXTENSION_MUST_BE_NON_EMPTY_STRING');
+            throw new TypeError('extension must be a non empty string');
         }
 
+        /**
+         * @type {String}
+         */
         this._basepath = basepath;
-        this._extension = extension;
+
+        /**
+         * @type {String}
+         */
+        this._extension = extension[0] == '.' ? extension : '.' + extension;
     }
 
     /**
      * Gets the base path.
      *
-     * @public
-     * @returns {string} - the base path
+     * @type {String}
      */
     get basepath()
     {
@@ -66,8 +67,7 @@ export default class PathBuilder
     /**
      * Gets the file extension.
      *
-     * @public
-     * @returns {string} - the file extension without the leading dot
+     * @type {String}
      */
     get extension()
     {
@@ -78,26 +78,33 @@ export default class PathBuilder
      * Builds a path made up of the base path, the specified lcid, namespace,
      * and the file extension.
      *
-     * @public
-     * @param {string} lcid - the locale id
-     * @param {string} namespace=DEFAULT_NS - the optional namespace
-     * @returns {string} - the path
+     * @param {String} lcid - the locale id
+     * @param {String} namespace=DEFAULT_NS - the optional namespace
+     * @returns {String} - the path
      */
     buildPath(lcid, namespace=DEFAULT_NS)
     {
-        /* istanbul ignore else */
-        if (typeof lcid != 'string' || !lcid.length)
+        if (!isNonEmptyString(lcid))
         {
-            throw new TypeError('MSG_LCID_MUST_BE_NON_EMPTY_STRING');
+            throw new TypeError('lcid must be a non empty string');
+        }
+        else if (!REGEXP_LANGID.test(lcid))
+        {
+            throw new TypeError(`invalid lcid "${lcid}"`);
         }
 
-        /* istanbul ignore else */
-        if (typeof namespace != 'string' || !namespace.length)
+        if (!isNonEmptyString(namespace))
         {
-            throw new TypeError('MSG_NAMSPACE_MUST_BE_NON_EMPTY_STRING');
+            throw new TypeError('namespace must be a non empty string');
+        }
+        else if (!REGEXP_NSFQNAME.test(namespace))
+        {
+            throw new TypeError(`invalid namespace "${namespace}"`);
         }
 
-        return path.join(this.basepath, lcid, namespace + '.' + this.extension);
+        return path.join(
+            this.basepath, lcid, namespace + this.extension
+        );
     }
 }
 

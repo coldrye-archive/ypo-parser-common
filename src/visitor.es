@@ -16,20 +16,71 @@
  */
 
 
+import {abstract} from 'pingo';
+
+
 /**
  * TODO:document
+ * The abstract class AbstractVisitor models the root of a hierarchy
+ * of derived classes.
+ *
+ * Visitors are used during both the parsing process and subsequent
+ * transformation processes thereof.
+ *
+ *
+ * Visitors can implement one or more of the following methods.
+ *
+ * ### visitToken(token)
+ *
+ * A visitor implementing this is able to visit all tokens of the parse tree.
+ *
+ * ### visitDirective(directive)
+ *
+ * A visitor implementing this is able to visit all directives of the parse tree.
+ *
+ * ### visitAuthorship(authorship)
+ *
+ * ### visitComment(comment)
+ *
+ * ### visitContext(context)
+ *
+ * ### visitOption(option)
+ *
+ * A visitor implementing this is able to visit all option directives of the parse tree.
+ *
+ * ### visitUnitOption(unit)
+ *
+ * ### visitLang(lang)
+ *
+ * ### visitNamespace(namespace)
+ *
+ * ### visitPlural(plural)
+ *
+ * ### visitTranslationId(translationId)
+ *
+ * ### visitSymbol(symbol)
+ *
+ * ### visitUnit(unit)
+ *
+ * ### visitTranslation(translation)
+ *
+ * ### visitVariation(variation)
+ *
+ * A visitor implementing this is able to visit all symbols of the parse tree.
+ *
+ * ### visitText(text)
+ *
+ * A visitor implementing this is able to visit all text tokens of the parse tree.
+ *
+ * ### visitCompoundText(compound)
+ *
+ * ### visitEmptyLine(emptyLine)
+ *
+ * ### visitLine(line)
  */
+/*eslint no-inline-comments:0*/
+/*istanbul ignore next*/
+@abstract
 export default class AbstractVisitor
-{
-    /**
-     * Visits the specified node.
-     *
-     * @param {AbstractNode} node - the node to visit
-     */
-    /* eslint no-unused-vars:0 */
-    visit(node)
-    {
-        throw new Error('derived classes must implement this.');
-    }
-}
+{}
 

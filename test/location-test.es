@@ -16,32 +16,86 @@
  */
 
 
-import assert from 'esaver';
+import Location from '../src/location';
 
-import {TEST_LOCATION, TEST_LINE, TEST_FILE_NAME} from './fixtures';
+import {TEST_LINE, TEST_FILE} from './fixtures';
 
 
 describe('Location',
 function ()
 {
-    it('#file must return correct value',
+    describe('new Location()',
     function ()
     {
-        assert.equal(TEST_FILE_NAME, TEST_LOCATION.file);
+        it('must fail on missing file',
+        function ()
+        {
+            function tc()
+            {
+                new Location();
+            }
+            tc.should.throw(TypeError, 'file must be a non empty string');
+        });
+
+        it('must fail on empty file',
+        function ()
+        {
+            function tc()
+            {
+                new Location('');
+            }
+            tc.should.throw(TypeError, 'file must be a non empty string');
+        });
+
+        it('must fail on missing line',
+        function ()
+        {
+            function tc()
+            {
+                new Location(TEST_FILE);
+            }
+            tc.should.throw(TypeError, 'line must be a positive integer');
+        });
+
+        it('must fail on negative line that is less than -1',
+        function ()
+        {
+            function tc()
+            {
+                new Location(TEST_FILE, -2);
+            }
+            tc.should.throw(TypeError, 'line must be a positive integer');
+        });
+
+        it('must fail on non integral line',
+        function ()
+        {
+            function tc()
+            {
+                new Location(TEST_FILE, 0.5);
+            }
+            tc.should.throw(TypeError, 'line must be a positive integer');
+        });
     });
 
-    it('#line must return correct value',
+    const cut = new Location(TEST_FILE, TEST_LINE);
+
+    it('#file must have expected value',
     function ()
     {
-        assert.equal(TEST_LINE, TEST_LOCATION.line);
+        cut.file.should.equal(TEST_FILE);
     });
 
-    it('#toString must return correct value',
+    it('#line must have expected value',
     function ()
     {
-        assert.equal(
-            TEST_FILE_NAME + ':' + TEST_LINE, TEST_LOCATION.toString()
-        );
+        cut.line.should.equal(TEST_LINE);
+    });
+
+    it('#toString() must return expected value',
+    function ()
+    {
+        cut.toString().should.equal(`${TEST_FILE}:${TEST_LINE}`);
     });
 });
 

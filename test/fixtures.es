@@ -19,34 +19,29 @@
 import Location from '../src/location';
 
 
-export const TEST_DIRECTIVE = 'test';
-
-
-export const TEST_FILE_NAME = 'test';
-
-
-export const TEST_LINE = 0;
-
-
-export const TEST_LINE1 = 1;
-
-
-export const TEST_LOCATION = new Location(TEST_FILE_NAME, TEST_LINE);
-
-
-export const TEST_LOCATION1 = new Location(TEST_FILE_NAME, TEST_LINE1);
-
-
-export const EMPTY = '';
-
+export const TEST_FILE = 'test';
+export const TEST_LINE = 1;
+export const TEST_LINE1 = 2;
+export const TEST_LOCATION = new Location(TEST_FILE, TEST_LINE);
+export const TEST_LOCATION1 = new Location(TEST_FILE, TEST_LINE1);
 
 export const TEXT = 'text w numb3rs';
+export const LINE_CONTINUATION = TEXT + '\\';
+export const LINE_CONTINUATION2 = TEXT + '\\\\\\';
+export const LINE_CONTINUATION3 = '\\';
+export const NO_LINE_CONTINUATION = TEXT + '\\\\';
+export const NO_LINE_CONTINUATION2 = TEXT + '\\\\\\\\';
 
-
+export const TEST_DIRECTIVE = 'test';
 export const ESCAPED_DIRECTIVE = '\\# ' + TEST_DIRECTIVE;
 
+export const COMBINED_CONTINUATION_ESCAPED_DIRECTIVE =
+    '\\# ' + TEST_DIRECTIVE + '\\';
 
-export const LINE_CONTINUATION = TEXT + '\\';
+
+// disputable fixtures
+
+export const EMPTY = '';
 
 
 export const DIRECTIVE = '# ' + TEST_DIRECTIVE;
@@ -119,7 +114,4 @@ export const TEST_ALIAS = 'thor';
 
 
 export const TEST_EMAIL = 'thor@example.org';
-
-
-export const TEST_FILE = 'test_file';
 

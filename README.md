@@ -7,6 +7,9 @@ ypo-parser-common provides a suite of common abstractions used by other ypo rela
 
 The main use for this package is with ypo-lexer-ypo and possibly also other such similar integrations.
 
+You might want to have a look at [ypo-cli](https://github.com/coldrye-es/ypo-cli.git) instead and see how
+it can help you with your translations.
+
 
 ## Releases
 
@@ -29,7 +32,7 @@ See the [contributing guidelines](https://github.com/coldrye-es/ypo-parser-commo
 
 ### Contributors
 
- - [Carsten Klein](https://github.com/silkentrance) **Maintainer**
+See [contributors](https://github.com/coldrye-es/ypo-parser-common/graphs/contributors) for more information.
 
 
 ### Building
@@ -49,6 +52,7 @@ See also [development dependencies](https://github.com/coldrye-es/esmake#develop
 
  - _[babel-runtime](https://github.com/babel/babel)_
  - [esbases](https://github.com/coldrye-es/esbases)
+ - [pingo](https://github.com/coldrye-es/pingo)
 
 **The dependencies denoted in _italics_ need to be provided by the using project.**
 

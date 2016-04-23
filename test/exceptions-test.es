@@ -16,9 +16,7 @@
  */
 
 
-import assert from 'esaver';
-
-import AbstractNode from '../src/node';
+import AbstractToken from '../src/token';
 import ParseError from '../src/exceptions';
 
 import {TEST_LOCATION, TEST_LOCATION1} from './fixtures';
@@ -27,90 +25,129 @@ import {TEST_LOCATION, TEST_LOCATION1} from './fixtures';
 describe('ParseError',
 function ()
 {
-    describe('constructor',
+    it('new ParseError() must fail on both location and token missing',
     function ()
     {
-        it('must fail on missing both location and token',
+        function tc()
+        {
+            new ParseError('message');
+        }
+        tc.should.throw(TypeError, 'either token or location');
+    });
+
+    describe('when initialized with a cause',
+    function ()
+    {
+        const cause = new Error('cause');
+        const cut = new ParseError(
+            'message', {location:TEST_LOCATION, cause}
+        );
+
+        it('#cause must have expected value',
         function ()
         {
-            assert.throws(
-            function ()
-            {
-                const cut = new ParseError('message');
-            }, TypeError);
+            cut.cause.should.deep.equal(cause);
         });
     });
 
-    const cut = new ParseError('message', {location:TEST_LOCATION1});
-
-    it('#location must return the correct value',
+    describe('when initialized with a location only',
     function ()
     {
-        assert.deepEqual(TEST_LOCATION1, cut.location);
-    });
-
-    it('#toString() must return the correct value',
-    function ()
-    {
-        assert.equal(
-            'ParseError: message [location=' + TEST_LOCATION1.toString() + ']',
-            cut.toString()
+        const cut = new ParseError(
+            'message', {location:TEST_LOCATION}
         );
+
+        it('#location must have expected value',
+        function ()
+        {
+            cut.location.should.deep.equal(TEST_LOCATION);
+        });
+
+        it('#token must be null',
+        function ()
+        {
+            should.not.exist(cut.token);
+        });
+
+        it('#message must have expected value',
+        function ()
+        {
+            cut.message.should.equal(
+                `message [location=${TEST_LOCATION.toString()}]`
+            );
+        });
+
+        it('#toString() must return expected value',
+        function ()
+        {
+            cut.toString().should.equal(`[ParseError: ${cut.message}]`);
+        });
     });
 
-    class NodeImpl extends AbstractNode
+    class TokenImpl extends AbstractToken
     {}
+    const token = new TokenImpl(TEST_LOCATION);
 
-    const node = new NodeImpl(TEST_LOCATION);
-
-    const cut2 = new ParseError('message', {token:node});
-
-    it('#location must be derived from token on missing location',
+    describe('when initialized with a token only',
     function ()
     {
-        assert.deepEqual(TEST_LOCATION, cut2.location);
+        const cut = new ParseError('message', {token:token});
+
+        it('#location must be derived from token',
+        function ()
+        {
+            cut.location.should.deep.equal(TEST_LOCATION);
+        });
+
+        it('#token must have expected value',
+        function ()
+        {
+            cut.token.should.deep.equal(token);
+        });
+
+        it('#message must have expected value',
+        function ()
+        {
+            cut.message.should.equal(
+                `message [location=${TEST_LOCATION.toString()}`
+                + `, token=${token.toString()}]`
+            );
+        });
+
+        it('#toString() must return expected value',
+        function ()
+        {
+            cut.toString().should.equal(`[ParseError: ${cut.message}]`);
+        });
     });
 
-    it('#token must return the correct value',
+    describe('when initialized with both a location and a token',
     function ()
     {
-        assert.deepEqual(node, cut2.token);
-    });
-
-    it('#toString() must return the correct value',
-    function ()
-    {
-        assert.equal(
-            'ParseError: message [location=' + TEST_LOCATION.toString()
-            + ',token=' + node.toString() + ']',
-            cut2.toString()
+        const cut = new ParseError(
+            'message', {location:TEST_LOCATION1,token:token}
         );
-    });
 
-    const cut3 = new ParseError(
-        'message', {location:TEST_LOCATION1, token:node}
-    );
+        it('#location must be derived from location',
+        function ()
+        {
+            cut.location.should.deep.equal(TEST_LOCATION1);
+        });
 
-    it('#location location takes precedence over token.location',
-    function ()
-    {
-        assert.deepEqual(TEST_LOCATION1, cut3.location);
-    });
+        it('#message must have expected value',
+        function ()
+        {
+            cut.message.should.equal(
+                `message [location=${TEST_LOCATION1.toString()}`
+                + `, token=${token.toString()}]`
+            );
+        });
 
-    it('#token must return the correct value',
-    function ()
-    {
-        assert.deepEqual(node, cut3.token);
-    });
-
-    it('#toString() must return the correct value',
-    function ()
-    {
-        assert.equal(
-            'ParseError: message [location=' + TEST_LOCATION1.toString()
-            + ',token=' + node.toString() + ']',
-            cut3.toString()
-        );
+        it('#toString() must return expected value',
+        function ()
+        {
+            cut.toString().should.equal(`[ParseError: ${cut.message}]`);
+        });
     });
 });
 

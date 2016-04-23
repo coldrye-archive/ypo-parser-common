@@ -16,19 +16,38 @@
  */
 
 
+import {isNonEmptyString} from './utils';
+
+
 /**
- * The class Location models an object that holds information on where a
- * specific artifact of the parse process was encountered in a given file.
+ * The class Location models an object that provides information on which line
+ * a given artifact of the parse process is located in a specified input file.
  */
 export default class Location
 {
     /**
-     * @param {string} file - the file name
-     * @param {Number} line - the line number
-     * @returns {void}
+     * @param {String} file - the file name
+     * @param {Number} line - the line number, a positive integer > 0
+     * @throws {TypeError} - in case either file or line are invalid
      */
     constructor(file, line)
     {
+        if (!isNonEmptyString(file))
+        {
+            throw new TypeError('file must be a non empty string');
+        }
+
+        // compensate for dummy location: permit -1
+        if (line != -1
+            && (typeof line != 'number' || line <= 0
+            || Math.floor(line) != line)
+        )
+        {
+            throw new TypeError(
+                `line must be a positive integer > 0, got ${line}`
+            );
+        }
+
         this._file = file;
         this._line = line;
     }
@@ -36,7 +55,7 @@ export default class Location
     /**
      * Gets the file name.
      *
-     * @returns {string} - the file name
+     * @type {String}
      */
     get file()
     {
@@ -46,7 +65,7 @@ export default class Location
     /**
      * Gets the line number.
      *
-     * @returns {Number} - the line number
+     * @type {Number}
      */
     get line()
     {
@@ -54,13 +73,17 @@ export default class Location
     }
 
     /**
-     * Renders a representation of this in the format ``file:line``.
+     * Renders a representation of this in the format __file:line__.
      *
-     * @returns {string} - the string representation of this
+     * @returns {String} - the string representation of this
      */
     toString()
     {
-        return this.file + ':' + this.line;
+        return `${this.file}:${this.line}`;
     }
+
 }
+
+
+Location.DUMMY_LOCATION = new Location('unknown', -1);
 

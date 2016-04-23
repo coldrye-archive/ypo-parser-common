@@ -16,112 +16,142 @@
  */
 
 
-import assert from 'esaver';
-
 import PathBuilder from '../src/pathbuilder';
 
 
 describe('PathBuider',
 function ()
 {
-    describe('constructor',
+    describe('new PathBuilder()',
     function ()
     {
         it('must fail on missing basepath',
         function ()
         {
-            assert.throws(
-            function ()
+            function tc()
             {
                 new PathBuilder(null, 'ext');
-            }, TypeError);
+            }
+            tc.should.throw(TypeError, 'basepath must be a string');
         });
 
-        it('must fail on empty string basepath',
+        it('must not fail on empty basepath',
         function ()
         {
-            assert.throws(
-            function ()
+            function tc()
             {
                 new PathBuilder('', 'ext');
-            }, TypeError);
+            }
+            tc.should.not.throw(
+                TypeError, 'basepath must be a non empty string'
+            );
         });
 
         it('must fail on missing extension',
         function ()
         {
-            assert.throws(
-            function ()
+            function tc()
             {
                 new PathBuilder('/tmp');
-            }, TypeError);
+            }
+            tc.should.throw(TypeError, 'extension must be a non empty string');
         });
 
-        it('must fail on empty string extension',
+        it('must fail on empty extension',
         function ()
         {
-            assert.throws(
-            function ()
+            function tc()
             {
                 new PathBuilder('/tmp', '');
-            }, TypeError);
+            }
+            tc.should.throw(TypeError, 'extension must be a non empty string');
+        });
+
+        it('must add leading to extension when missing',
+        function ()
+        {
+            new PathBuilder('/tmp', 'ext').extension.should.equal('.ext');
+        });
+
+        it('must not add leading to extension when provided',
+        function ()
+        {
+            new PathBuilder('/tmp', '.ext').extension.should.equal('.ext');
         });
     });
 
     const cut = new PathBuilder('/tmp', 'ext');
 
-    it('#basepath must return correct value',
+    it('#basepath must have expected value',
     function ()
     {
-        assert.equal(cut.basepath, '/tmp');
+        cut.basepath.should.equal('/tmp');
     });
 
-    it('#extension must return correct value',
+    describe('#buildPath()',
     function ()
     {
-        assert.equal(cut.extension, 'ext');
-    });
-
-    it('#buildPath() must fail on missing lcid',
-    function ()
-    {
-        assert.throws(
+        it('must fail on missing lcid',
         function ()
         {
-            cut.buildPath();
-        }, TypeError);
-    });
+            function tc()
+            {
+                cut.buildPath();
+            }
+            tc.should.throw(TypeError, 'lcid must be a non empty string');
+        });
 
-    it('#buildPath() must fail on empty string lcid',
-    function ()
-    {
-        assert.throws(
+        it('must fail on empty string lcid',
         function ()
         {
-            cut.buildPath('');
-        }, TypeError);
-    });
+            function tc()
+            {
+                cut.buildPath('');
+            }
+            tc.should.throw(TypeError, 'lcid must be a non empty string');
+        });
 
-    it('#buildPath() must not fail on missing namespace',
-    function ()
-    {
-        assert.equal(cut.buildPath('en'), '/tmp/en/translation.ext');
-    });
-
-    it('#buildPath() must return correct value',
-    function ()
-    {
-        assert.equal(cut.buildPath('en', 'ns'), '/tmp/en/ns.ext');
-    });
-
-    it('#buildPath() must fail on empty string namespace',
-    function ()
-    {
-        assert.throws(
+        it('must fail on empty string namespace',
         function ()
         {
-            cut.buildPath('en', '');
-        }, TypeError);
+            function tc()
+            {
+                cut.buildPath('en', '');
+            }
+            tc.should.throw(TypeError, 'namespace must be a non empty string');
+        });
+
+        it('must fail on invalid non empty lcid',
+        function ()
+        {
+            function tc()
+            {
+                cut.buildPath('invalid');
+            }
+            tc.should.throw(TypeError, 'invalid lcid "invalid"');
+        });
+
+        it('must fail on invalid non empty custom namespace',
+        function ()
+        {
+            function tc()
+            {
+                cut.buildPath('en', '.invalid');
+            }
+            tc.should.throw(TypeError, 'invalid namespace ".invalid"');
+        });
+
+        it('must use default namespace when missing',
+        function ()
+        {
+            cut.buildPath('en').should.equal('/tmp/en/translation.ext');
+        });
+
+        it('must return expected value for custom namespace',
+        function ()
+        {
+            cut.buildPath('en', 'ns').should.equal('/tmp/en/ns.ext');
+        });
     });
 });
 

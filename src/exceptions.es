@@ -20,16 +20,27 @@ import EsError from 'esbases/error';
 
 
 /**
- * The class ParseError models an exception thrown whenever the input token stream does not conform
- * to the i18neasy-po format specification.
+ * The class ParseError models an exception thrown during parse.
  */
 export default class ParseError extends EsError
 {
-    constructor(message, {location, token} = {})
+    /**
+     * Constructs a new instance of this.
+     *
+     * Please note that either location or token must be specified.
+     *
+     * @param {String} message - the message
+     * @param {Object} options - the options
+     * @param {Location} options.location - the location
+     * @param {AbstractToken} options.token - the token
+     * @param {Error} options.cause - the cause
+     * @throws {TypeError} - in case both location and token are missing
+     */
+    constructor(message, {location, token, cause} = {})
     {
-        super(message);
+        super(message, cause);
 
-        if (!location && !token)
+        if (location == undefined && token == undefined)
         {
             throw new TypeError('either token or location must be specified');
         }
@@ -38,50 +49,51 @@ export default class ParseError extends EsError
         this._token = token;
     }
 
+    /**
+     * @override
+     */
     get message()
     {
         let result = [];
+        let components = [];
 
         result.push(super.message);
 
-        const token = this.token;
-        const location = this.location;
-        let components = [];
-
         /* istanbul ignore else */
-        if (location)
+        if (this.location)
         {
-            components.push('location=' + location.toString());
+            components.push(`location=${this.location.toString()}`);
         }
 
         /* istanbul ignore else */
-        if (token)
+        if (this.token)
         {
-            components.push('token=' + token.toString());
+            components.push('token=' + this.token.toString());
         }
 
-        /* istanbul ignore else */
-        if (components)
-        {
-            result.push('[' + components.join(',') + ']');
-        }
+        result.push(`[${components.join(', ')}]`);
 
         return result.join(' ');
     }
 
+    /**
+     * Gets the location or undefined.
+     *
+     * @type {Location}
+     */
     get location()
     {
         return this._location;
     }
 
+    /**
+     * Gets the token or undefined.
+     *
+     * @type {AbstractToken}
+     */
     get token()
     {
         return this._token;
-    }
-
-    toString()
-    {
-        return 'ParseError: ' + this.message;
     }
 }
 
