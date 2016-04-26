@@ -18,6 +18,8 @@
 
 import EsError from 'esbases/error';
 
+import {isString} from './utils';
+
 
 /**
  * The class ParseError models an exception thrown during parse.
@@ -33,10 +35,11 @@ export default class ParseError extends EsError
      * @param {Object} options - the options
      * @param {Location} options.location - the location
      * @param {AbstractToken} options.token - the token
+     * @param {String} options.line - the line
      * @param {Error} options.cause - the cause
      * @throws {TypeError} - in case both location and token are missing
      */
-    constructor(message, {location, token, cause} = {})
+    constructor(message, {location, token, line, cause} = {})
     {
         super(message, cause);
 
@@ -47,6 +50,7 @@ export default class ParseError extends EsError
 
         this._location = location ? location : token.location;
         this._token = token;
+        this._line = line;
     }
 
     /**
@@ -59,16 +63,22 @@ export default class ParseError extends EsError
 
         result.push(super.message);
 
-        /* istanbul ignore else */
+        /*istanbul ignore else*/
         if (this.location)
         {
             components.push(`location=${this.location.toString()}`);
         }
 
-        /* istanbul ignore else */
+        /*istanbul ignore else*/
         if (this.token)
         {
-            components.push('token=' + this.token.toString());
+            components.push(`token=${this.token.toString()}`);
+        }
+
+        /*istanbul ignore else*/
+        if (isString(this.line))
+        {
+            components.push(`line='${this.line}'`);
         }
 
         result.push(`[${components.join(', ')}]`);
@@ -94,6 +104,16 @@ export default class ParseError extends EsError
     get token()
     {
         return this._token;
+    }
+
+    /**
+     * Gets the line or undefined.
+     *
+     * @type {String}
+     */
+    get line()
+    {
+        return this._line;
     }
 }
 

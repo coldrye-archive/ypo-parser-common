@@ -149,5 +149,39 @@ function ()
             cut.toString().should.equal(`[ParseError: ${cut.message}]`);
         });
     });
+
+    describe('when initialized with a location and a non empty line',
+    function ()
+    {
+        const cut = new ParseError(
+            'message', {location:TEST_LOCATION, line:'the line'}
+        );
+
+        it('#line == "the line"',
+        function ()
+        {
+            cut.line.should.equal('the line');
+        });
+
+        it('#toString() must include line data',
+        function ()
+        {
+            cut.toString().should.contain('the line');
+        });
+    });
+
+    describe('when initialized with a location and an empty line',
+    function ()
+    {
+        const cut = new ParseError(
+            'message', {location:TEST_LOCATION, line:''}
+        );
+
+        it('#toString() must include line data',
+        function ()
+        {
+            cut.toString().should.contain('line=\'\'');
+        });
+    });
 });
 
