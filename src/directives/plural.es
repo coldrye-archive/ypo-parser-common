@@ -43,11 +43,11 @@ export const CARDINALITY_ATOM = '(?:[0-9]+|inf)';
 //FIXME -inf..+inf, N..+inf, -N..+M, -inf..N, inf, +N, -N
 export const CARDINALITY =
     /* +-ATOM */
-    `([+-]?${CARDINALITY_ATOM})`
+    `(?:[+-]?${CARDINALITY_ATOM})`
     /* -ATOM..+-ATOM */
-    + `|([-]?${CARDINALITY_ATOM}[.][.][+-]?${CARDINALITY_ATOM})`
+    + `|(?:[-]?${CARDINALITY_ATOM}[.][.][+-]?${CARDINALITY_ATOM})`
     /* +ATOM..+ATOM */
-    + `|([+]?${CARDINALITY_ATOM}[.][.][+]?${CARDINALITY_ATOM})`
+    + `|(?:[+]?${CARDINALITY_ATOM}[.][.][+]?${CARDINALITY_ATOM})`
 
 
 /**
