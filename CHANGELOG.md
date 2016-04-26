@@ -1,3 +1,14 @@
+<a name="0.0.9"></a>
+## [0.0.9](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.8...v0.0.9) (2016-04-26)
+
+
+### Bug Fixes
+
+* **ParseError** add line property as expected by YpoLexer ([b523220](https://github.com/coldrye-es/ypo-parser-common/commit/b523220))
+* **plural** reduce number of match groups to just one ([2536fd2](https://github.com/coldrye-es/ypo-parser-common/commit/2536fd2))
+
+
+
 <a name="0.0.8"></a>
 ## [0.0.8](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.7...v0.0.8) (2016-04-23)
 
