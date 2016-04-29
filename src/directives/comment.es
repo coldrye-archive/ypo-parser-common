@@ -54,5 +54,13 @@ export default class Comment extends AbstractDirective
             visitor.visitComment(this);
         }
     }
+
+    /**
+     * @override
+     */
+    get isWhitespace()
+    {
+        return true;
+    }
 }
 
