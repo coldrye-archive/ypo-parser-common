@@ -84,5 +84,11 @@ function ()
     {
         new Authorship(fixtures.TEST_LOCATION);
     });
+
+    it('must be classified as whitespace',
+    function ()
+    {
+        cut.isWhitespace.should.be.ok;
+    });
 });
 

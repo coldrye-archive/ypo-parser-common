@@ -229,5 +229,13 @@ export default class Authorship extends AbstractDirective
 
         return parts.join(',');
     }
+
+    /**
+     * @override
+     */
+    get isWhitespace()
+    {
+        return true;
+    }
 }
 
