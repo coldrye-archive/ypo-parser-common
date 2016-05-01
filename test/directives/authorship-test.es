@@ -52,7 +52,7 @@ function ()
     basicDirectiveTests(
         cut, fixtures.TEST_LOCATION, DIRECTIVE_AUTHORSHIP,
         {value:'Au Thor "thor" <thor@example.org> (http://example.org)',
-         visitor:VisitorImpl}
+         visitor:VisitorImpl, isWhitespace:true}
     );
 
     it('#name must have the correct value',
