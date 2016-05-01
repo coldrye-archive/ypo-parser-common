@@ -16,20 +16,14 @@
  */
 
 
-import AbstractDirective from './directive';
-
-
-/**
- * @private
- */
-export const DIRECTIVE_COMMENT = '#';
+import AbstractToken from '../token';
 
 
 /**
  * The class Comment models a token of the lexer that represents a single
  * comment line in the input file.
  */
-export default class Comment extends AbstractDirective
+export default class Comment extends AbstractToken
 {
     /**
      * @param {Location} location - the location
@@ -38,7 +32,7 @@ export default class Comment extends AbstractDirective
      */
     constructor(location, {value} = {})
     {
-        super(location, DIRECTIVE_COMMENT, {value});
+        super(location, {value});
     }
 
     /**

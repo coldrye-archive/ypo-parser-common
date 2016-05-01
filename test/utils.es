@@ -27,7 +27,7 @@ export function tokenStringValue(type, location)
 }
 
 
-export default function basicTokenTests(token, location, {value, visitor} = {})
+export default function basicTokenTests(token, location, {value, visitor, isWhitespace} = {})
 {
     it('#location must return the correct location',
     function ()
@@ -82,6 +82,14 @@ export default function basicTokenTests(token, location, {value, visitor} = {})
         {
             should.not.exist(token.value);
         }
+    });
+
+    const actualIsWhitespace = !!isWhitespace;
+
+    it('#isWhitespace == ' + actualIsWhitespace,
+    function ()
+    {
+        token.isWhitespace.should.equal(actualIsWhitespace);
     });
 }
 

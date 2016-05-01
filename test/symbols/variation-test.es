@@ -17,7 +17,7 @@
 
 
 import Variation from '../../src/symbols/variation';
-import Comment from '../../src/directives/comment';
+import Comment from '../../src/tokens/comment';
 import Context from '../../src/directives/context';
 import CompoundText from '../../src/text/compoundtext';
 import Translation from '../../src/symbols/translation';

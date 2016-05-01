@@ -17,7 +17,7 @@
 
 
 import AbstractSymbol from '../../src/symbols/symbol';
-import Comment from '../../src/directives/comment';
+import Comment from '../../src/tokens/comment';
 import {Namespace} from '../../src/directives/option';
 import AbstractVisitor from '../../src/visitor';
 

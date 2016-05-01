@@ -16,7 +16,7 @@
  */
 
 
-import AbstractText from './text';
+import AbstractToken from '../token';
 
 
 /**
@@ -27,7 +27,7 @@ import AbstractText from './text';
  * discarded from the input as they can be part of multi line messages.
  *
  */
-export default class EmptyLine extends AbstractText
+export default class EmptyLine extends AbstractToken
 {
     /**
      * @param {Location} location - the location

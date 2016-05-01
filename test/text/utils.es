@@ -23,15 +23,7 @@ export default function basicTextTests(
     token, location, {value, visitor, isWhitespace} = {}
 )
 {
-    basicTokenTests(token, location, {value, visitor});
-
-    const actualIsWhitespace = !!isWhitespace;
-
-    it('#isWhitespace == ' + actualIsWhitespace,
-    function ()
-    {
-        token.isWhitespace.should.equal(actualIsWhitespace);
-    });
+    basicTokenTests(token, location, {value, visitor, isWhitespace});
 }
 
 

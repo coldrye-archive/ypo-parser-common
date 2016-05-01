@@ -20,10 +20,10 @@ import basicTokenTests from '../utils';
 
 
 export default function basicDirectiveTests(
-    token, location, directive, {value, visitor} = {}
+    token, location, directive, {value, visitor, isWhitespace} = {}
 )
 {
-    basicTokenTests(token, location, {value, visitor});
+    basicTokenTests(token, location, {value, visitor, isWhitespace});
 
     it('#directive == ' + directive,
     function ()

@@ -19,7 +19,7 @@
 import {abstract} from 'pingo';
 
 import AbstractToken from '../token';
-import Comment from '../directives/comment';
+import Comment from '../tokens/comment';
 
 
 /**

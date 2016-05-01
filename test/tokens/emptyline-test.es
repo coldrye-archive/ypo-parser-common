@@ -16,10 +16,10 @@
  */
 
 
-import EmptyLine from '../../src/text/emptyline';
+import EmptyLine from '../../src/tokens/emptyline';
 import AbstractVisitor from '../../src/visitor';
 
-import basicTextTests from './utils';
+import basicTokenTests from '../utils';
 import * as fixtures from '../fixtures';
 
 
@@ -34,14 +34,11 @@ function ()
         visitToken(token)
         {}
 
-        visitText(token)
-        {}
-
         visitEmptyLine(token)
         {}
     }
 
-    basicTextTests(
+    basicTokenTests(
         cut, fixtures.TEST_LOCATION,
         {value:'', visitor:VisitorImpl, isWhitespace:true}
     );

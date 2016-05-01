@@ -17,11 +17,11 @@
 
 
 import {
-    default as Comment, DIRECTIVE_COMMENT
-} from '../../src/directives/comment';
+    default as Comment
+} from '../../src/tokens/comment';
 import AbstractVisitor from '../../src/visitor';
 
-import basicDirectiveTests from './utils';
+import basicTokenTests from '../utils';
 import * as fixtures from '../fixtures';
 
 
@@ -38,16 +38,13 @@ function ()
         visitToken(token)
         {}
 
-        visitDirective(token)
-        {}
-
         visitComment(token)
         {}
     }
 
-    basicDirectiveTests(
-        cut, fixtures.TEST_LOCATION, DIRECTIVE_COMMENT,
-        {value:fixtures.WHITESPACE_PRESERVED, visitor:VisitorImpl}
+    basicTokenTests(
+        cut, fixtures.TEST_LOCATION,
+        {value:fixtures.WHITESPACE_PRESERVED, visitor:VisitorImpl, isWhitespace:true}
     );
 
     it('must not fail on missing value',

@@ -17,7 +17,7 @@
 
 
 import Translation from '../../src/symbols/translation';
-import Comment from '../../src/directives/comment';
+import Comment from '../../src/tokens/comment';
 import TranslationId from '../../src/directives/translationid';
 import Variation from '../../src/symbols/variation';
 import Line from '../../src/text/line';
