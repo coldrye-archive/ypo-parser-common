@@ -1,3 +1,27 @@
+<a name="0.0.10"></a>
+## [0.0.10](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.9...v0.0.10) (2016-05-01)
+
+
+* version bump v0.0.10([0254948](https://github.com/coldrye-es/ypo-parser-common/commit/0254948))
+
+
+### Bug Fixes
+
+* **Authorship:** authorship is whitespace([5cdc981](https://github.com/coldrye-es/ypo-parser-common/commit/5cdc981))
+* **Comment:** comment is whitespace([b2f70f7](https://github.com/coldrye-es/ypo-parser-common/commit/b2f70f7))
+
+
+### Code Refactoring
+
+* **tokens:** comment and emptyline are simple tokens([ad9f41e](https://github.com/coldrye-es/ypo-parser-common/commit/ad9f41e))
+
+
+### Tests
+
+* **authorship:** fix test([5041713](https://github.com/coldrye-es/ypo-parser-common/commit/5041713))
+
+
+
 <a name="0.0.9"></a>
 ## [0.0.9](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.8...v0.0.9) (2016-04-26)
 
