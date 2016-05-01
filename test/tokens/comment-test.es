@@ -44,7 +44,10 @@ function ()
 
     basicTokenTests(
         cut, fixtures.TEST_LOCATION,
-        {value:fixtures.WHITESPACE_PRESERVED, visitor:VisitorImpl, isWhitespace:true}
+        {
+            value:fixtures.WHITESPACE_PRESERVED, visitor:VisitorImpl,
+            isWhitespace:true
+        }
     );
 
     it('must not fail on missing value',

@@ -27,7 +27,9 @@ export function tokenStringValue(type, location)
 }
 
 
-export default function basicTokenTests(token, location, {value, visitor, isWhitespace} = {})
+export default function basicTokenTests(
+    token, location, {value, visitor, isWhitespace} = {}
+)
 {
     it('#location must return the correct location',
     function ()
