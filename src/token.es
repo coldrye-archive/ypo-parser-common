@@ -47,9 +47,8 @@ export default class AbstractToken
 
         this._location = location || Location.DUMMY_LOCATION;
 
-        // Note: some derived classes do not support value to be set
-        /*istanbul ignore else*/
-        if (value)
+        // some derived classes do not have a value
+        if (value !== null && typeof value != 'undefined')
         {
             this.value = value;
         }
@@ -161,8 +160,8 @@ export default class AbstractToken
      */
     validateValue(value)
     {
-        /*istanbul ignore else*/
-        if (value && !isString(value))
+        // allow user to unset the value
+        if (value !== null && typeof value != 'undefined' && !isString(value))
         {
             throw new TypeError('value must be a string');
         }

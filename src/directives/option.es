@@ -192,9 +192,7 @@ export class Lang extends AbstractUnitOption
      */
     constructor(location, {value} = {})
     {
-        super(location, OPTION_LANG);
-
-        this.value = value;
+        super(location, OPTION_LANG, {value});
     }
 
     /**
@@ -218,7 +216,7 @@ export class Lang extends AbstractUnitOption
     {
         super.validateValue(value);
 
-        if (!REGEXP_LANGID.test(value))
+        if (!value || !REGEXP_LANGID.test(value))
         {
             throw new Error(`invalid langid "${value}"`);
         }
@@ -236,9 +234,7 @@ export class Namespace extends AbstractUnitOption
      */
     constructor(location, {value} = {})
     {
-        super(location, OPTION_NS);
-
-        this.value = value||DEFAULT_NS;
+        super(location, OPTION_NS, {value: value||DEFAULT_NS});
     }
 
     /**
@@ -262,7 +258,7 @@ export class Namespace extends AbstractUnitOption
     {
         super.validateValue(value);
 
-        if (!value || !REGEXP_NSFQNAME.test(value))
+        if (!REGEXP_NSFQNAME.test(value))
         {
             throw new Error(`invalid namespace "${value}"`);
         }
