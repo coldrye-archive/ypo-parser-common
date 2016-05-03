@@ -1,3 +1,22 @@
+<a name="0.0.11"></a>
+## [0.0.11](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.10...v0.0.11) (2016-05-03)
+
+
+* version bump v0.0.11([e2b4fcd](https://github.com/coldrye-es/ypo-parser-common/commit/e2b4fcd))
+
+
+### Chores
+
+* **dependencies:** add dependency conventional-changelog-coldrye([674b230](https://github.com/coldrye-es/ypo-parser-common/commit/674b230))
+
+
+### Code Refactoring
+
+* **AbstractToken:** better error handling on null or undefined value during construction([513c867](https://github.com/coldrye-es/ypo-parser-common/commit/513c867))
+* **AbstractTokenizer:** tokenizer is now responsible for reading the input file([81749d4](https://github.com/coldrye-es/ypo-parser-common/commit/81749d4))
+
+
+
 <a name="0.0.10"></a>
 ## [0.0.10](https://github.com/coldrye-es/ypo-parser-common/compare/v0.0.9...v0.0.10) (2016-05-01)
 
