@@ -21,11 +21,11 @@ import {abstract} from 'pingo';
 
 /**
  * The class AbstractTokenizer models the root of a hierarchy of derived
- * classes used for tokenizing a stream of lines from a source conforming
- * to the YPO file format.
+ * classes used for tokenizing a stream of lines from a given source into
+ * tokens that can then be further processed by the ypo parser.
  *
- * It is the responsibility of the parser to verify the correct order of the
- * tokens produced by this.
+ * It is the responsibility of the parser to validate the correct order of
+ * the tokens produced by this.
  */
 /*eslint no-inline-comments:0*/
 /*istanbul ignore next*/
@@ -33,17 +33,15 @@ import {abstract} from 'pingo';
 export default class AbstractTokenizer
 {
     /**
-     * Generates a stream of tokens from lines read from the input stream.
+     * Generates a stream of tokens from lines read from the input file.
      *
      * @abstract
-     * @param {String} file - the absolute and resolved file name
-     * @param {Generator|Array<String>} lines - the input line (buffer) stream or array
-     * @throws {ParseError}
-     * @returns {AbstractToken}
+     * @throws {ParseError} - in case the input file does not conform to the YPO file format
+     * @returns {TokenGenerator} - the token generator
      */
     /*eslint no-unused-vars:0*/
     @abstract
-    tokenize(file, lines)
+    /* * */ tokenize()
     {}
     // NOTE: we cannot make this a generator function *tokenize(...) as the
     // babylon parser will otherwise fail to parse the code, see
