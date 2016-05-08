@@ -52,9 +52,15 @@ export const OPTION_NS = 'ns';
 
 
 /**
+ * As per "Tags for Identifying Languages" (RFC4646) with the following limitations
+ *
+ * Language-Tag = langtag
+ * langtag = (language ["-" region])
+ * language = 2*3ALPHA
+ *
  * @protected
  */
-export const LANGID = '[a-z]{2}(?:[-][A-Z]{2})?';
+export const LANGID = '([a-z]{2,3})(?:[-]([A-Z]{2}|[0-9]{3}))?';
 
 
 /**
